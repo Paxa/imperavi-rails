@@ -12,9 +12,11 @@ module ImperaviRails
 
     def imperavi(element, options = {}, wrap = true)
       javascript_var = options.delete(:javascript_var) || imperavi_default_options[:javascript_var]
+      lang = options[:lang] || 'en'
+      lang_data = File.open(File.join(File.dirname(__FILE__), "../../views/imperavi_rails/languages/#{lang}.js"), 'r:utf-8', &:read)
       result = %Q(
         var #{javascript_var};
-
+        #{lang_data}
         $(document).ready(function() {
           #{javascript_var} = document.#{element}_redactor = $('##{element}').redactor(#{imperavi_options(options).to_json});
         });
@@ -60,7 +62,7 @@ module ImperaviRails
           # this is temoarary fix I hope
           #:stylesheets => [stylesheet_link_tag('wym').match(/href="([^"]+)"/)[1]],
           :stylesheets => [],
-
+          :css => '/assets/imperavi-rails/imperavi/wym.css',
           # Toolbar
           :toolbar => imperavi_rails.toolbar_path(base_options[:toolbar], :format => :js),
 

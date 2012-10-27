@@ -1,85 +1,93 @@
 @mixin imperavi-base {
-  font-family: "Trebuchet MS", Verdana, Arial, Tahoma, sans-serif;      
-  font-size: 90%;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-
-  blockquote {
-    margin: 10px;
-    margin-left: 3em;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;  
-    line-height: 1.5em; 
-    font-style: italic;
-    color: #777;  
+  body {
+    font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #f8f8f8;
   }
 
-  div {
-    line-height: 1.5em;
+  #page {
+    margin: 20px;
+    background: #f8f8f8;
+    border: none;
+    padding: 0;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  a {
+    color: #15c;
+  }
+
+  object, embed, video, iframe {
+    width: auto;
+    max-width: 100%;
+  }
+
+  video, iframe {
+    height: auto;
+  }
+
+  div, p, ul, ol, table, dl, pre, h1, h2, h3, h4, h5, blockquote {
     background-color: #fff;
     border: 1px solid #ebebeb;
-    padding: 10px;  
-    margin: 10px;
+    padding: 10px;
+    margin: 10px 0;
   }
 
   p {
-    margin: 10px;
+    ul, ol {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+
+  div, p, ul, ol, table, dl, blockquote, pre, iframe, object, hr {
+    margin-bottom: 15px;
     line-height: 1.5em;
+  }
+
+  blockquote {
+    margin-left: 3em;
+    font-style: italic;
+    color: #777;
+  }
+
+  div {
     background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;
-    overflow: hidden;
-
-    .img_left {
-      float: left;
-      margin: 0 10px 0 0;
-    }
-
-    .img_right {
-      float: right;
-      margin: 0 0 0 10px;
-    }
+    border: 1px dashed #ebebeb;
   }
 
   ul, ol {
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;
-    line-height: 1.5em;
-    margin: 10px;
-    padding-left: 2em;  
+    padding-left: 2em !important;
   }
 
-  ul li ul, ol li ol, ul li ol, ol li ul {
+  ul ul, ol ol, ul ol, ol ul {
     border: none;
     margin: 2px !important;
     padding: 0;
-    padding-left: 2em;    
+    padding-left: 2em;
   }
 
-  dl { 
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;  
-    margin: 10px; 
+  dl dt {
+    font-weight: bold;
+  }
 
-    dt { font-weight: bold; }
-    dd { margin-left: 1.5em;}
+  dd {
+    margin-left: 1em;
   }
 
   table {
-    background-color: #fff;
     border-collapse: collapse;
-    font-size: 1em; 
-    margin: 10px;
-
+    font-size: 1em;
     td {
       border: 1px solid #ddd;
       padding: 5px;
     }
-
     thead td {
       border-bottom: 2px solid #000 !important;
       font-weight: bold;
@@ -87,64 +95,49 @@
   }
 
   code, pre {
-    font: 1.2em/1 "Courier New", Courier, monospace;
-    border: 1px dashed #ccc;
-    background: #f5f5f5;
-    padding: 1em;
-    margin: 10px;
+    font-family: monospace sans-serif;
+  }
+
+  code {
+    background-color: #d8d7d7;
   }
 
   pre {
-    line-height: 1.7em;
-    font-size: .9em;
+    padding: 1em;
+    border: 1px dashed #ccc;
     background: #f5f5f5;
     overflow: auto;
   }
 
-  iframe, object {
-    margin: 10px;
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
   }
-
-  .redactor_video_box {
-    width: 300px;
-    height: 200px;
-    background: asset-url("imperavi-rails/video_box.png", images) center no-repeat #000 !important; 
-    margin: 10px;
-
-    object, embed, iframe {
-      display: none;
-    }
-  }
-
-  .redactor_file_link { padding-left: 20px; }
-
-  .redactor_file_ico_avi    { background: asset-url("imperavi-rails/imperavi/fileicons/avi.png", images) no-repeat; }
-  .redactor_file_ico_csv    { background: asset-url("imperavi-rails/imperavi/fileicons/csv.png", images) no-repeat; }
-  .redactor_file_ico_doc    { background: asset-url("imperavi-rails/imperavi/fileicons/doc.png", images) no-repeat; }
-  .redactor_file_ico_gif    { background: asset-url("imperavi-rails/imperavi/fileicons/gif.png", images) no-repeat; }
-  .redactor_file_ico_html   { background: asset-url("imperavi-rails/imperavi/fileicons/html.png", images) no-repeat; }
-  .redactor_file_ico_jpg    { background: asset-url("imperavi-rails/imperavi/fileicons/jpg.png", images) no-repeat; }
-  .redactor_file_ico_mov    { background: asset-url("imperavi-rails/imperavi/fileicons/mov.png", images) no-repeat; }
-  .redactor_file_ico_other  { background: asset-url("imperavi-rails/imperavi/fileicons/other.png", images) no-repeat; }
-  .redactor_file_ico_pdf    { background: asset-url("imperavi-rails/imperavi/fileicons/pdf.png", images) no-repeat; }
-  .redactor_file_ico_png    { background: asset-url("imperavi-rails/imperavi/fileicons/png.png", images) no-repeat; }
-  .redactor_file_ico_ppt    { background: asset-url("imperavi-rails/imperavi/fileicons/ppt.png", images) no-repeat; }
-  .redactor_file_ico_rar    { background: asset-url("imperavi-rails/imperavi/fileicons/rar.png", images) no-repeat; }
-  .redactor_file_ico_rtf    { background: asset-url("imperavi-rails/imperavi/fileicons/rtf.png", images) no-repeat; }
-  .redactor_file_ico_txt    { background: asset-url("imperavi-rails/imperavi/fileicons/txt.png", images) no-repeat; }
-  .redactor_file_ico_xls    { background: asset-url("imperavi-rails/imperavi/fileicons/xls.png", images) no-repeat; }
-  .redactor_file_ico_zip    { background: asset-url("imperavi-rails/imperavi/fileicons/zip.png", images) no-repeat; }
 
   h1, h2, h3, h4, h5 {
-    font-weight: normal;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    padding: 10px;
-    margin: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
-  h1 { font-size: 30px; }
-  h2 { font-size: 24px; }
-  h3 { font-size: 18px; }
-  h4 { font-size: 12px; font-weight: bold; }
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
 }
