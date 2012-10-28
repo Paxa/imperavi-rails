@@ -578,7 +578,7 @@ if (typeof RELANG === 'undefined')
 			}
 			
 
-		}, options, this.$el.data());
+		}, this.defaultOptions, options, this.$el.data());
 	
 		this.dropdowns = [];
 	
@@ -588,8 +588,7 @@ if (typeof RELANG === 'undefined')
 
 	// Functionality
 	Redactor.prototype = {
-
-
+    defaultOptions: {},
 		// Initialization
 		init: function()
 		{
@@ -635,7 +634,7 @@ if (typeof RELANG === 'undefined')
 			if (this.opts.cleanUp === true)
 			{
 				$(this.doc).bind('paste', $.proxy(function(e)
-				{ 
+				{
 					setTimeout($.proxy(function ()
 					{
 						var marker = Math.floor(Math.random() * 99999);
@@ -905,7 +904,7 @@ if (typeof RELANG === 'undefined')
 		syncCode: function()
 		{
 			var html = this.formatting(this.$editor.html());
-			this.$el.val(html);			
+			this.$el.val(html);
 		},
 		
 		// API functions
@@ -3216,7 +3215,8 @@ if (typeof RELANG === 'undefined')
 		}					
 
 	};
-	
+
+  window.Redactor = Redactor;
 	
 	// API
 	$.fn.getDoc = function() 
