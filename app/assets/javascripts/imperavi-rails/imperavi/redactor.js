@@ -1334,21 +1334,18 @@ if (typeof RELANG === 'undefined')
 			var properties = ['color', 'background-color', 'font-style', 'margin', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'text-align', 'width', 'height', 'cursor', 'float'];
 			
 			// remove attributes
-			var matches = html.match(/([\w\-.:]+)\s*=\s*("[^"]*"|'[^']*'|[\w\-.:]+)/gi);
-			$.each(matches, $.proxy(function(i,m)
-			{
+			var matches = html.match(/[\s'"]([\w\-\.:]+)\s*=\s*("[^"]*"|'[^']*'|[\w\-.:]+)/gi);
+
+			$.each(matches, $.proxy(function(i,m) {
 				var attr = m.split('=');
-				if ($.inArray(attr[0], attributes) == '-1') 
-				{
+				if ($.inArray(attr[0], attributes) == '-1') {
 					html = html.replace(m, '');
 				}
 				
 				// remove styles
-				if (this.opts.removeStyles === false && attr[0] == 'style') 
-				{
+				if (this.opts.removeStyles === false && attr[0] == 'style') {
 					html = this.cleanStyles(properties, html, m);
 				}
-
 			}, this));
 			
 			// remove styles
