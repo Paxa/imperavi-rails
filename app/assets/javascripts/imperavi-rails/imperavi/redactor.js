@@ -1330,14 +1330,14 @@ if (typeof RELANG === 'undefined')
 				html = html.replace(/"Times New Roman"/gi, '');				
 			}
 			
-			var attributes = ['width', 'height', 'src', 'style', 'href', 'frameborder', 'class', 'id', 'rel', 'unselectable'];    
+			var attributes = ['width', 'height', 'src', 'style', 'href', 'frameborder', 'class', 'id', 'rel', 'unselectable', 'colspan', 'rowspan', 'valign', 'align', 'cellspacing', 'cellpadding'];
 			var properties = ['color', 'background-color', 'font-style', 'margin', 'margin-top', 'margin-bottom', 'margin-left', 'margin-right', 'text-align', 'width', 'height', 'cursor', 'float'];
 			
 			// remove attributes
 			var matches = html.match(/[\s'"]([\w\-\.:]+)\s*=\s*("[^"]*"|'[^']*'|[\w\-.:]+)/gi);
 
 			$.each(matches, $.proxy(function(i,m) {
-				var attr = m.split('=');
+				var attr = m.replace(/^\s+/, '').split('=');
 				if ($.inArray(attr[0], attributes) == '-1') {
 					html = html.replace(m, '');
 				}
@@ -1373,6 +1373,8 @@ if (typeof RELANG === 'undefined')
 		
 			// remove span without styles
 			html = html.replace(/<span>([\w\W]*?)<\/span>/gi, '$1');
+			html = html.replace(/<span class="[^"]+">([\w\W]*?)<\/span>/gi, '$1');
+			html = html.replace(/<p class="[^"]+">([\w\W]*?)<\/p>/gi, '$1');
 			html = html.replace(/<span>([\w\W]*?)<\/span>/gi, '$1');
 			html = html.replace(/<span(\s)?>([\w\W]*?)<\/span>/gi, '$2');
 
